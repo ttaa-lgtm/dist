@@ -1,0 +1,809 @@
+<html>
+  <head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+      body{
+        background: transparent;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .video-js .vjs-big-play-button {
+        z-index: 8 !important;
+        cursor: pointer !important;
+        visibility: visible !important;
+        text-align: center !important;
+        opacity: 1 !important;
+        background-color: #ffffff0a !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+      }
+    </style>
+
+    <style>
+      .vjs-custom-control-spacer {
+        flex: auto;
+        height: 30px;
+        padding: 5px;
+        display: -webkit-box;
+        max-width: none;
+      }
+      .vjs-control-bar{
+        padding-left: 1em !important;
+        padding-right: 1em !important;
+      }
+      .video-js .vjs-big-play-button .vjs-svg-icon {
+        fill: #000;
+        filter: none;
+        width: 100px !important;
+        height: 100px !important;
+      }
+      .vjs-audio-button {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      .video-js .vjs-progress-control .vjs-play-progress {
+        background-color: #4a9d05 !important;
+      }
+      .video-js .vjs-big-play-button {
+        z-index: 8 !important;
+        cursor: pointer !important;
+        visibility: visible !important;
+        text-align: center !important;
+        opacity: 1 !important;
+        background-color: #ffffff0f !important;
+        border-radius: 50% !important;
+        width: 120px !important;
+        height: 120px !important;
+        padding: 0 !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+      }
+      .video-js .vjs-big-play-button:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      }
+      .video-js .vjs-big-play-button:active {
+        transform: translate(-50%, -50%) scale(0.95);
+        transition: all 0.1s ease;
+      }
+      .video-js .vjs-big-play-button .vjs-icon-placeholder {
+        font-size: 32px;
+        line-height: 150px;
+        color: #fff;
+        transition: all 0.3s ease;
+      }
+      .video-js .vjs-big-play-button .vjs-icon-placeholder svg {
+        fill: #4a9d05bd;
+        transition: fill 0.3s ease;
+      }
+      .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
+        color: #4a9d05;
+        transition: color 0.3s ease;
+      }
+      .video-js .vjs-big-play-button:hover .vjs-icon-placeholder {
+        color: #4a9d05;
+      }
+      .video-js .vjs-big-play-button:hover .vjs-icon-placeholder svg {
+        fill: #4a9d05;
+      }
+      .video-js .vjs-big-play-button:hover .vjs-icon-placeholder:before {
+        color: #4a9d05bd;
+      }
+      @media (max-width: 768px) {
+        .vjs-custom-control-spacer {
+          flex: 0.5;
+          min-width: 20px;
+          max-width: 60px;
+        }
+        .vjs-audio-button {
+          display: block !important;
+          visibility: visible !important;
+          min-width: 35px !important;
+        }
+        .video-js .vjs-big-play-button {
+          width: 72px;
+          height: 72px;
+        }
+        .video-js .vjs-big-play-button .vjs-icon-placeholder {
+          font-size: 28px;
+          line-height: 72px;
+        }
+      }
+      @media (max-width: 480px) {
+        .vjs-custom-control-spacer {
+          flex: 0.2;
+          min-width: 10px;
+          max-width: 30px;
+          height: 32px;
+        }
+        .vjs-audio-button {
+          display: block !important;
+          visibility: visible !important;
+          min-width: 32px !important;
+        }
+        .video-js .vjs-big-play-button {
+          width: 64px;
+          height: 64px;
+        }
+        .video-js .vjs-big-play-button .vjs-icon-placeholder {
+          font-size: 24px;
+          line-height: 64px;
+        }
+      }
+      @media (max-width: 360px) {
+        .vjs-custom-control-spacer {
+          flex: 0.1;
+          min-width: 5px;
+          max-width: 15px;
+          height: 28px;
+        }
+        .vjs-audio-button {
+          display: block !important;
+          visibility: visible !important;
+          min-width: 30px !important;
+        }
+      }
+    </style>
+
+
+
+  </head>
+  <body topmargin="0" leftmargin="0" style="background: transparent">
+    <div style="position: relative">
+    
+
+      
+
+      <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+
+
+      <script>
+        function hab1() {
+          var t = document.createElement("div1");
+          (t.innerHTML = "&nbsp;"),
+            (t.className =
+              "ad doubleclick google-ad adsbox pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads skyscraper text-ad-links");
+          var e = !(t.style =
+            "width: 1px !important; height: 1px !important; position: absolute !important; left: -10000px !important; top: -1000px !important;");
+          try {
+            document.body.appendChild(t);
+            var a = document.getElementsByClassName("adsbox")[0];
+            if (
+              ((0 !== a.offsetHeight && 0 !== a.clientHeight) || (e = !0),
+              void 0 !== window.getComputedStyle)
+            ) {
+              var d = window.getComputedStyle(a, null);
+              !d ||
+                ("none" != d.getPropertyValue("display") &&
+                  "hidden" != d.getPropertyValue("visibility")) ||
+                (e = !0);
+            }
+            document.body.removeChild(t);
+          } catch (a) {}
+          return e;
+        }
+      </script>
+
+      <link
+        href="/css/videojs.min.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <script src="/videojs/video.min.js"></script>
+      <script src="/videojs/nuevo.min.js"></script>
+      <style>
+        .vast-skip-button,
+        .vast-skip-button-text,
+        .vjs-ads-skip-button,
+        .vjs-skip-button,
+        [class*="skip-button"],
+        [class*="vast-skip"] {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+        }
+
+        p:contains("Skip Ad"),
+        span:contains("Skip Ad"),
+        div:contains("Skip Ad"),
+        button:contains("Skip Ad") {
+          display: none !important;
+        }
+
+        .video-js .vjs-big-play-button {
+          z-index: 8 !important;
+        }
+
+        /* Cast button styling */
+        .vjs-chromecast-button {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          width: 2.3em !important;
+          height: 2.3em !important;
+        }
+
+        .vjs-chromecast-button .vjs-icon-cast {
+          display: block !important;
+          width: 100% !important;
+          height: 100% !important;
+        }
+
+        .vjs-chromecast-button .vjs-icon-cast svg {
+          width: 100% !important;
+          height: 100% !important;
+         
+        }
+      </style>
+
+      <script src="/videojs/plugins/videojs.hotkeys.min.js"></script>
+      <script src="/videojs/plugins/videojs.airplay.js"></script>
+      <script src="/videojs/plugins/videojs-chromecast.min.js"></script>
+      <script src="/videojs/plugins/vast.vpaid.min.js"></script>
+      <script src="/videojs/plugins/videojs.filters.js"></script>
+
+      <video
+        id="vjsplayer"
+        height="480"
+        width="640"
+        class="video-js vjs-fill vjs-jwlike-skin playsinline"
+        style="width: 100%; height: 100%; text-align: center"
+        width="100%"
+        height="100%"
+        crossorigin="anonymous"
+        controls="true"
+        preload="auto"
+      ></video>
+    </div>
+
+    <script type="text/javascript">
+      var player, poster;
+      
+      // Function to get video ID from URL query string
+      function getVideoIdFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('id') ; // Default fallback
+      }
+      
+      // Function to fetch video data from API
+      async function fetchVideoData(videoId) {
+        try {
+          const apiUrl = `https://api.vidcdn.xyz/v2/api/videos/${videoId}/direct-link?key=4VfnXL1OuzApB2RVcYnFFrfNcxo623bK`;
+          const response = await fetch(apiUrl);
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          
+          const data = await response.json();
+    
+          return data;
+        } catch (error) {
+          console.error('Error fetching video data:', error);
+          //destroy the player show error 
+          return null;
+        }
+      }
+      
+      // Initialize player with default source
+      player = videojs("vjsplayer", {
+        license: "17032456545413",
+        autoplay: false,
+        techOrder: ["chromecast", "html5"],
+       
+        
+      });
+      player.poster("");
+      var related_videos = [];
+      
+      // Function to load video from API
+      async function loadVideoFromApi() {
+        const videoId = getVideoIdFromUrl();
+  
+        
+        const videoData = await fetchVideoData(videoId);
+        
+        if (videoData && videoData.hls_url) {
+          // Update player sources
+          player.src({
+            src: videoData.hls_url,
+            type: "application/x-mpegURL"
+          });
+          
+          // Update player title and metadata
+          if (videoData.title) {
+            document.title = videoData.title;
+          }
+          
+          // Update poster if available
+          if (videoData.thumbnail) {
+            player.poster(videoData.thumbnail);
+          }
+          
+          // Update chromecast metadata
+          updateChromecastMetadata(videoData);
+          
+          console.log('Video loaded successfully:', videoData.title);
+        } else {
+          console.log('Using default video source');
+        }
+      }
+      
+      // Load video when player is ready
+      player.ready(function() {
+        loadVideoFromApi();
+      });
+      
+      //var player = videojs('vjsplayer',{license: "120e55491d495e4103",techOrder:['chromecast','html5']});
+
+      player.nuevo({
+        logotitle: "",
+        sldeType: "vertical",
+        contextMenu: false,
+        contextUrl: "",
+        contextText: "",
+        contextIcon: "",
+       
+        resume: true,
+        fill: true,
+        responsive: true,
+        videoInfo: false,
+
+        //infoBottom : true,
+        infoBold: false,
+        buttonForward: true,
+      });
+      player.airplay();
+      // Function to update chromecast metadata
+      function updateChromecastMetadata(videoData) {
+        if (videoData) {
+          player.chromecast({
+            overlayButton: true,
+            alwaysShow: true,
+            metaTitle: videoData.title || "",
+            metaSubtitle: `Duration: ${Math.floor(videoData.video_duration / 60)}:${(videoData.video_duration % 60).toString().padStart(2, '0')}`,
+            metaThumbnail: videoData.thumbnail || "",
+          });
+        } else {
+          player.chromecast({
+            overlayButton: true,
+            alwaysShow: true,
+            metaTitle: "",
+            metaSubtitle: "",
+            metaThumbnail: "",
+          });
+        }
+      }
+      
+      // Initialize chromecast with default values
+      updateChromecastMetadata(null);
+      player.filters();
+      player.hotkeys({
+        volumeStep: 0.1,
+        seekStep: 5,
+        alwaysCaptureHotkeys: true,
+      });
+      player.on("nuevoReady", function () {
+        playhandler();
+      });
+      player.on("mode", function (event, mode) {
+        var width;
+        if (mode == "large") width = "100%";
+        else width = "70%";
+        document.querySelector(".theater").style.width = width;
+      });
+      player.nuevo({
+        theaterButton: true,
+      });
+
+      player.nuevo({ contextMenu: false });
+
+      player.ready(function () {
+        var settings = this.textTrackSettings;
+        settings.setValues({
+          backgroundColor: "#000",
+          backgroundOpacity: "0",
+          edgeStyle: "uniform",
+          fontPercent: "1.25",
+        });
+        settings.updateDisplay();
+      });
+
+      setTimeout(function () {
+        console.log("Forcing cast buttons display - Final version...");
+
+        var chromecastBtn = document.querySelector(".vjs-chromecast-button");
+        var controlBar = document.querySelector(".vjs-control-bar");
+
+        console.log("Chromecast button found:", !!chromecastBtn);
+        console.log("Control bar found:", !!controlBar);
+
+        // Forcer l'affichage du bouton natif s'il existe
+        if (chromecastBtn) {
+          chromecastBtn.style.display = "block !important";
+          chromecastBtn.style.visibility = "visible !important";
+          chromecastBtn.style.opacity = "1 !important";
+          console.log("Native chromecast button forced visible");
+        }
+
+        // Si pas de bouton natif, créer un bouton fonctionnel
+        if (!chromecastBtn && controlBar) {
+          var newCastBtn = document.createElement("button");
+          newCastBtn.className = "vjs-chromecast-button vjs-control vjs-button";
+          newCastBtn.innerHTML = '<span class="vjs-icon-cast"><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Media / Chromecast"> <path id="Vector" d="M3 8.2502V8.2002C3 7.08009 3 6.51962 3.21799 6.0918C3.40973 5.71547 3.71547 5.40973 4.0918 5.21799C4.51962 5 5.08009 5 6.2002 5H17.8002C18.9203 5 19.4796 5 19.9074 5.21799C20.2837 5.40973 20.5905 5.71547 20.7822 6.0918C21 6.5192 21 7.07899 21 8.19691V15.8031C21 16.921 21 17.48 20.7822 17.9074C20.5905 18.2837 20.2839 18.5905 19.9076 18.7822C19.4802 19 18.921 19 17.8031 19H14M5 19C5 17.8954 4.10457 17 3 17M8 19C8 16.2386 5.76142 14 3 14M11 19C11 14.5817 7.41828 11 3 11" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></span>';
+          newCastBtn.title = "Cast to Chromecast";
+          newCastBtn.style.display = "block";
+          newCastBtn.style.visibility = "visible";
+          newCastBtn.style.opacity = "1";
+          newCastBtn.style.width = "2.8em";
+          newCastBtn.style.height = "2.8em";
+          newCastBtn.onclick = function () {
+            // Essayer d'utiliser l'API native du player
+            if (player && typeof player.chromecast === "function") {
+              try {
+                player.chromecast().requestSession();
+                console.log("Cast session requested via player API");
+              } catch (e) {
+                console.log("Player cast failed, trying browser API");
+                if (window.chrome && window.chrome.cast) {
+                  chrome.cast.requestSession(
+                    function (session) {
+                      console.log("Cast session started");
+                    },
+                    function (error) {
+                      console.log("Cast error:", error);
+                    }
+                  );
+                } else {
+                  alert(
+                    "Chromecast non disponible. Assurez-vous d'être sur le même réseau qu'un Chromecast."
+                  );
+                }
+              }
+            }
+          };
+          controlBar.appendChild(newCastBtn);
+          console.log("Functional cast button created");
+        }
+      }, 4000);
+      videojs.addLanguage("en-us", { "360p": "Normal" });
+
+      player.vastAds({
+        tagURL: "",
+        skipButton: false,
+        adControls: false,
+        contentPlayback: false,
+      });
+      var originalCurrentTime = 0;
+      var originalDuration = 0;
+      var originalProgress = null;
+      var adPlaying = false;
+
+      player.on("loadedmetadata", function () {
+        if (!adPlaying) {
+          originalDuration = player.duration();
+          console.log("Original duration saved:", originalDuration);
+        }
+      });
+
+      player.on("adstart", function () {
+        console.log("VAST ad started - stopping content completely");
+        adPlaying = true;
+        originalCurrentTime = player.currentTime();
+
+        if (!originalDuration) {
+          originalDuration = player.duration();
+        }
+        originalProgress = document.querySelector(".vjs-progress-control");
+
+        player.pause();
+        player.currentTime(0);
+
+        if (originalProgress) {
+          originalProgress.style.display = "none";
+        }
+        document.querySelector(".vjs-control-bar").style.display = "none";
+
+        var videoElement = document.querySelector("video");
+        if (videoElement) {
+          videoElement.pause();
+          videoElement.muted = true;
+        }
+      });
+
+      player.on("adend", function () {
+        console.log("VAST ad ended - resuming content");
+        adPlaying = false;
+
+        if (originalProgress) {
+          originalProgress.style.display = "block";
+        }
+        document.querySelector(".vjs-control-bar").style.display = "block";
+
+        var videoElement = document.querySelector("video");
+        if (videoElement) {
+          videoElement.muted = false;
+        }
+
+        player.currentTime(originalCurrentTime);
+
+        setTimeout(function () {
+          if (originalDuration && player.duration() !== originalDuration) {
+            console.log("Restoring original duration:", originalDuration);
+          }
+          player.play();
+        }, 100);
+      });
+
+      player.on("aderror", function () {
+        console.log("VAST ad error - resuming content");
+        adPlaying = false;
+        if (originalProgress) {
+          originalProgress.style.display = "block";
+        }
+        document.querySelector(".vjs-control-bar").style.display = "block";
+
+        var videoElement = document.querySelector("video");
+        if (videoElement) {
+          videoElement.muted = false;
+        }
+        player.currentTime(originalCurrentTime);
+      });
+
+      setInterval(function () {
+        if (adPlaying) {
+          var videoElement = document.querySelector("video");
+          if (videoElement && !videoElement.paused) {
+            videoElement.pause();
+            videoElement.muted = true;
+          }
+        }
+      }, 100);
+
+      setInterval(function () {
+        var skipButtons = document.querySelectorAll(
+          '.vast-skip-button, .vjs-ads-skip-button, [class*="skip"], .vast-skip-button-text'
+        );
+        skipButtons.forEach(function (btn) {
+          if (
+            btn.textContent &&
+            (btn.textContent.toLowerCase().includes("skip") ||
+              btn.textContent.includes("Skip"))
+          ) {
+            btn.style.display = "none !important";
+            btn.style.visibility = "hidden !important";
+            btn.style.opacity = "0 !important";
+          }
+        });
+      }, 500);
+
+      setInterval(function () {
+        if (!adPlaying && originalDuration > 0) {
+          if (player.duration() !== originalDuration) {
+            player.duration = function () {
+              return originalDuration;
+            };
+          }
+
+          var currentTime = player.currentTime();
+          var percentage = (currentTime / originalDuration) * 100;
+
+          var playProgress = document.querySelector(".vjs-play-progress");
+          if (playProgress && percentage >= 0 && percentage <= 100) {
+            playProgress.style.width = percentage + "%";
+          }
+
+          var progressHolder = document.querySelector(".vjs-progress-holder");
+          if (progressHolder) {
+            progressHolder.style.width = "100%";
+          }
+        }
+      }, 500);
+
+      var vvplay,
+        vvad,
+        x2ok = 0;
+      function playhandler(x) {
+        $("div.video_ad").hide();
+        if (vvplay) return;
+        vvplay = 1;
+        adb = 0;
+        if (window.cRAds === undefined) {
+          adb = 1;
+        }
+        if (hab1() || window.googleAd === undefined) {
+          adb = 1;
+        }
+        //$.get(
+          //"ad" +
+            //adb,
+          //function (data) {
+          //  $("#fviews").html(data);
+          //}
+        //);
+        //console.log('vjs:'+$('#fviews').html());
+      }
+
+      function showCCform() {
+        player.pause();
+
+        var $dd = ''
+
+        $dd.click(function () {
+          $(this).remove();
+          player.play();
+        });
+        $dd.appendTo($("#vjsplayer"));
+      }
+    </script>
+
+    <script>
+        let message = {   channel: 'vidcdn'  };
+      (function () {
+        let player = null;
+        let playerType = "videojs";
+        function initMessageListener() {
+          if (typeof videojs !== "undefined") {
+            const videoElements = document.querySelectorAll("video-js");
+            if (videoElements.length > 0) {
+              player = videojs(videoElements[0].id);
+              console.log("VideoJS");
+            } else {
+              const vjsElements = document.querySelectorAll(".video-js");
+              if (vjsElements.length > 0 && vjsElements[0].id) {
+                player = videojs(vjsElements[0].id);
+                console.log("VideoJS");
+              } else {
+                console.log("VideoJS");
+              }
+            }
+          } else {
+            console.log("VideoJS");
+          }
+          window.addEventListener("message", handleParentMessage);
+          
+          if (player) {
+            sendMessageToParent("playerReady", { playerType: playerType });
+            player.on("timeupdate", function () {
+              
+            message.event = "time";
+            message.percent = player.getPosition() / player.getDuration() * 100;
+            message.duration = player.getDuration();
+            message.time = player.getPosition();
+            window.parent.postMessage(JSON.stringify(message), "*");
+            
+            });
+            player.on("loadedmetadata", function () {
+                message.event = "loadedmetadata";
+                message.duration = player.getDuration();
+                message.percent = 0;
+                message.time = 0;
+                window.parent.postMessage(JSON.stringify(message), "*");
+              
+            });
+            player.on("ended", function () {
+              message.event = "complete";
+              message.duration = player.getDuration();
+              message.percent = 100;
+              message.time = player.getPosition();
+              window.parent.postMessage(JSON.stringify(message), "*");
+              
+            });
+            player.on("play", function () {
+              message.event = "play";
+              message.percent = player.getPosition() / player.getDuration() * 100;
+              message.duration = player.getDuration();
+              message.time = player.getPosition();
+              window.parent.postMessage(JSON.stringify(message), "*");
+              
+              sendMessageToParent("updatePlayPauseButton", { isPlaying: true });
+            });
+            player.on("pause", function () {
+              message.event = "pause";
+              message.percent = player.getPosition() / player.getDuration() * 100;
+              message.duration = player.getDuration();
+              message.time = player.getPosition();
+              window.parent.postMessage(JSON.stringify(message), "*");
+              
+              });
+           
+          }
+        }
+        function handleParentMessage(event) {
+          if (!event.data || !event.data.action) return;
+          if (
+            event.data.player &&
+            event.data.player !== "any" &&
+            event.data.player !== playerType
+          ) {
+            return;
+          }
+          switch (event.data.action) {
+            case "getCurrentTime":
+              if (player) {
+                const currentTime = player.currentTime();
+                const duration = player.duration();
+                sendMessageToParent("currentTime", {
+                  time: currentTime,
+                  currentTime: currentTime,
+                  duration: duration,
+                });
+              }
+              break;
+            case "seek":
+              if (player && typeof event.data.value === "number") {
+                player.currentTime(event.data.value);
+              }
+              break;
+            case "play":
+              if (player) {
+                player.play();
+              }
+              break;
+            case "pause":
+              if (player) {
+                player.pause();
+              }
+              break;
+            case "toggleSubtitles":
+              if (player) {
+                const tracks = player.textTracks();
+                if (tracks.length > 0) {
+                  const track = tracks[0];
+                  if (track.mode === "showing") {
+                    track.mode = "disabled";
+                  } else {
+                    track.mode = "showing";
+                  }
+                  const tracksArray = Array.from(tracks).map((t) => t.language);
+                  sendMessageToParent("subtitlesAvailable", {
+                    subtitles: tracksArray,
+                    enabled: track.mode === "showing",
+                  });
+                }
+              }
+              break;
+            case "seekBackward":
+              if (player) {
+                player.currentTime(Math.max(0, player.currentTime() - 10));
+              }
+              break;
+            case "seekForward":
+              if (player) {
+                player.currentTime(
+                  Math.min(player.duration(), player.currentTime() + 10)
+                );
+              }
+              break;
+            case "detectPlayer":
+              sendMessageToParent("playerDetected", { playerType: playerType });
+              break;
+          }
+        }
+        function sendMessageToParent(action, data) {
+          const message = Object.assign({ action: action }, data);
+          window.parent.postMessage(message, "*");
+        }
+        if (document.readyState === "complete") {
+          initMessageListener();
+        } else {
+          window.addEventListener("load", initMessageListener);
+        }
+      })();
+    </script>
+  </body>
+</html>
