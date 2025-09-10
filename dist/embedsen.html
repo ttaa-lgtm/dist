@@ -119,12 +119,20 @@ body.not-found{ background: #f6f6f6 !important; color: #000;}
     var oa = urlParams.get('oa') || '0';
     var asi = urlParams.get('asi') || '0';
     var time = urlParams.get('time') || '0';
+    var introstart = parseInt(urlParams.get('introstart')) || 0;
+    var introend = parseInt(urlParams.get('introend')) || 0;
+    var outrostart = parseInt(urlParams.get('outrostart')) || 0;
+    var outroend = parseInt(urlParams.get('outroend')) || 0;
     var settings = {
       "time": time,
       "autoPlay": autoPlay,
       "playOriginalAudio": oa,
       "autoSkipIntro": asi,
-      "vast": 0
+      "vast": 0,
+      "introstart": introstart,
+      "introend": introend,
+      "outrostart": outrostart,
+      "outroend": outroend
     };
 
         </script>
@@ -155,6 +163,15 @@ Chrome or Firefox.
 
     var dataid = urlParams.get('id') || 'defaultDataIdValue';
     var epid = urlParams.get('data-realid') || 'defaultEpidValue';
+    var autoPlay = urlParams.get('autoPlay') || '0';
+    var asi = urlParams.get('asi') || '0';
+    var oa = urlParams.get('oa') || '0';
+    var time = urlParams.get('time') || '0';
+    var introstart = parseInt(urlParams.get('introstart')) || 0;
+    var introend = parseInt(urlParams.get('introend')) || 0;
+    var outrostart = parseInt(urlParams.get('outrostart')) || 0;
+    var outroend = parseInt(urlParams.get('outroend')) || 0;
+  
 
     var divElement = document.getElementById("megacloud-player");
     divElement.setAttribute("data-id", dataid);
