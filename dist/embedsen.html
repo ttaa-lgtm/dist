@@ -123,6 +123,7 @@ body.not-found{ background: #f6f6f6 !important; color: #000;}
     var introend = parseInt(urlParams.get('introend')) || 0;
     var outrostart = parseInt(urlParams.get('outrostart')) || 0;
     var outroend = parseInt(urlParams.get('outroend')) || 0;
+    var playbackRates = urlParams.get('playbackRates') || '0';
     var settings = {
       "time": time,
       "autoPlay": autoPlay,
@@ -131,6 +132,7 @@ body.not-found{ background: #f6f6f6 !important; color: #000;}
       "vast": 0,
       "introstart": introstart,
       "introend": introend,
+      "playbackRates": playbackRates,
       "outrostart": outrostart,
       "outroend": outroend
     };
